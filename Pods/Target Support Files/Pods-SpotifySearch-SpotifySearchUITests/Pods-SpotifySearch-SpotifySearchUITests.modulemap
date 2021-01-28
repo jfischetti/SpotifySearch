@@ -1,0 +1,6 @@
+framework module Pods_SpotifySearch_SpotifySearchUITests {
+  umbrella header "Pods-SpotifySearch-SpotifySearchUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
