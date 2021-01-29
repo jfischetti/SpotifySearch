@@ -31,7 +31,6 @@ class SearchViewModel: SearchViewModelProtocol {
 
     func searchArtists(query: String) {
         api.searchArtists(query: query)
-            .retry(3)
             .catch {
                 print($0.localizedDescription)
                 return Observable.just([])
