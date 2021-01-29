@@ -10,16 +10,13 @@ import UIKit
 
 class ArtistTableViewCell: UITableViewCell {
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        self.imageView?.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-    }
+    @IBOutlet weak var artistImage: UIImageView!
+    @IBOutlet weak var artistName: UILabel!
 
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        self.imageView?.image = nil
-        self.textLabel?.text = nil
+        self.artistImage?.image = nil
+        self.artistName?.text = nil
     }
 }

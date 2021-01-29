@@ -59,26 +59,26 @@ class SearchViewController : UIViewController {
         })
         .disposed(by: disposeBag)
 
-        _ = self.viewModel?.artists.bind(to: self.tableView.rx.items(cellIdentifier: "Artist")) { index, artist, cell in
+        _ = self.viewModel?.artists.bind(to: self.tableView.rx.items(cellIdentifier: "Artist", cellType: ArtistTableViewCell.self)) { index, artist, cell in
 
             // set image
             DispatchQueue.global(qos: .userInteractive).async {
                 if let imageData = artist.images.first, let urlString = imageData.url, let url = URL(string: urlString), let data = try? Data(contentsOf: url) {
 
                     DispatchQueue.main.async {
-                        cell.imageView?.image = UIImage(data: data)
+                        cell.artistImage?.image = UIImage(data: data)
                         cell.setNeedsLayout()
                     }
                 } else {
                     DispatchQueue.main.async {
                         // set default image
-                        cell.imageView?.image = UIImage.fontAwesomeIcon(name: .image, style: .regular, textColor: .lightGray, size: CGSize(width: 400.0, height: 400.0))
+                        cell.artistImage?.image = UIImage.fontAwesomeIcon(name: .image, style: .regular, textColor: .lightGray, size: CGSize(width: 400.0, height: 400.0))
                         cell.setNeedsLayout()
                     }
                 }
             }
 
-            cell.textLabel?.text = artist.name
+            cell.artistName?.text = artist.name
         }
         .disposed(by: disposeBag)
 
